@@ -1,0 +1,2701 @@
+local v8 = game:GetService("Players")
+repeat
+    task.wait()
+until game:IsLoaded()
+local v9 = v8.LocalPlayer or v8.PlayerAdded:Wait()
+task.wait(1)
+print("════════════════════════════════════════════════════════")
+print("PRISON LIFE HYBRID v7 - OBSIDIAN UI")
+print("════════════════════════════════════════════════════════")
+local v10 = Instance.new("ScreenGui")
+v10.Parent = game.CoreGui
+v10.IgnoreGuiInset = true
+local v14 = Instance.new("Frame")
+v14.Parent = v10
+v14.Size = UDim2.new(1, 0, 1, 0)
+v14.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+local v18 = Instance.new("ImageLabel")
+v18.Parent = v14
+v18.Size = UDim2.new(0, 0, 0, 0)
+v18.Position = UDim2.new(0.5, 0, 0.5, 0)
+v18.AnchorPoint = Vector2.new(0.5, 0.5)
+v18.BackgroundTransparency = 1
+v18.Image = "rbxassetid://93351782406299"
+local v25 = Instance.new("TextLabel")
+v25.Parent = v14
+v25.Size = UDim2.new(1, 0, 0, 50)
+v25.Position = UDim2.new(0, 0, 0.82, 0)
+v25.BackgroundTransparency = 1
+v25.Text = "Skiten"
+v25.TextColor3 = Color3.new(1, 1, 1)
+v25.TextScaled = true
+local v33 = game:GetService("TweenService")
+local v34 = v33:Create(v18, TweenInfo.new(0.7, Enum.EasingStyle.Back), {Size = UDim2.new(0, 300, 0, 300)})
+v34:Play()
+v34.Completed:Wait()
+for v145 = 1, 2 do
+    local v146 = 0
+    while true do
+        if v146 == 0 then
+            v33:Create(v18, TweenInfo.new(0.6), {Size = UDim2.new(0, 330, 0, 330)}):Play()
+            task.wait(0.6)
+            v146 = 1
+        end
+        if v146 == 1 then
+            v33:Create(v18, TweenInfo.new(0.6), {Size = UDim2.new(0, 300, 0, 300)}):Play()
+            task.wait(0.6)
+            break
+        end
+    end
+end
+task.wait(0.5)
+v33:Create(v14, TweenInfo.new(0.5), {BackgroundTransparency = 1}):Play()
+v33:Create(v18, TweenInfo.new(0.5), {ImageTransparency = 1}):Play()
+v33:Create(v25, TweenInfo.new(0.5), {TextTransparency = 1}):Play()
+task.wait(0.6)
+v10:Destroy()
+print("📦 Carregando Obsidian...")
+local v35 = "https://raw.githubusercontent.com/deividcomsono/Obsidian/main/"
+local v36 = loadstring(game:HttpGet(v35 .. "Library.lua"))()
+local v37 = loadstring(game:HttpGet(v35 .. "addons/ThemeManager.lua"))()
+local v38 = loadstring(game:HttpGet(v35 .. "addons/SaveManager.lua"))()
+print("✅ Obsidian carregada!")
+local v39 = v36:CreateWindow({
+    Title = "gozei na cara da yas",
+    Footer = "Obsidian UI",
+    Icon = 93351782406299,
+    NotifySide = "Right",
+    ShowCustomCursor = true,
+})
+local v40 = game:GetService("RunService")
+local v41 = game:GetService("UserInputService")
+local v42 = game:GetService("ReplicatedStorage")
+local v43 = game:GetService("Workspace")
+local v44 = game:GetService("Debris")
+local v45 = v43.CurrentCamera
+local v46 = v8.LocalPlayer
+local v47 = game:GetService("Teams")
+local v48 = v47:FindFirstChild("Guards")
+local v49 = v47:FindFirstChild("Inmates")
+local v50 = v47:FindFirstChild("Criminals")
+local v51 = {
+    enabled = true,
+    teamcheck = true,
+    wallcheck = true,
+    deathcheck = true,
+    ffcheck = true,
+    vehiclecheck = true,
+    criminalsnoinnmates = true,
+    inmatesnocriminals = true,
+    shieldbreaker = true,
+    hitchance = 53,
+    fov = 50,
+    showfov = true,
+    aimpart = "Torso",
+    randomparts = true,
+    partslist = {"Head", "Torso", "Left Arm", "Right Arm"},
+    missspread = 5,
+    autoshoot = false,
+    autoshootdelay = 0.12,
+    autoshootstartdelay = 0.2,
+    prioritizeclosest = true,
+    targetstickiness = true,
+    targetstickinessduration = 0.6,
+    Aimbot = {
+        Enabled = false,
+        FOV = 100,
+        Smoothness = 0.5,
+        TargetPart = "Head",
+        TeamCheck = true,
+        VisibleCheck = true,
+        IgnoreIfSilentAim = true,
+    },
+    esp = true,
+    espShowBox = false,
+    espShowName = true,
+    espShowHealth = false,
+    espShowDistance = false,
+    espMaxDistance = 1000,
+    espBoxThickness = 2,
+    espTextSize = 13,
+    fireRateMultiplier = 1,
+    infiniteAmmo = false,
+    autoReload = false,
+    autoReloadThreshold = 5,
+}
+local v52 = nil
+local v53 = Random.new()
+local v54 = 0
+local v55 = false
+local v57 = nil
+local v58 = 0
+local v59 = nil
+local v60 = false
+local v61 = 0
+local v62 = 0
+local v63 = nil
+local v64 = nil
+local v65 = {}
+local v66
+local v67 = pcall(function()
+    local v148 = Drawing.new("Circle")
+    v148:Remove()
+end)
+if v67 then
+    local v385 = 0
+    while true do
+        if v385 == 0 then
+            v66 = Drawing.new("Circle")
+            v66.Color = Color3.fromRGB(255, 255, 255)
+            v385 = 1
+        end
+        if v385 == 3 then
+            v66.Thickness = 2
+            v66.Visible = false
+            v385 = 4
+        end
+        if 2 == v385 then
+            v66.Filled = false
+            v66.NumSides = 64
+            v385 = 3
+        end
+        if 4 == v385 then
+            print("✅ FOV Circle criado!")
+            break
+        end
+        if v385 == 1 then
+            v66.Radius = v51.fov
+            v66.Transparency = 0.8
+            v385 = 2
+        end
+    end
+end
+local v68 = nil
+local function v69(v149)
+    if not v149 or not v149.Character then
+        return false
+    end
+    local v150 = v149.Character:FindFirstChildOfClass("Humanoid")
+    return v150 and v150.Health > 0
+end
+local function v70(v151)
+    if not v51.Aimbot.VisibleCheck then
+        return true
+    end
+    if not v69(v151) then
+        return false
+    end
+    local v152 = v151.Character:FindFirstChild(v51.Aimbot.TargetPart)
+    if not v152 then
+        return false
+    end
+    local v153 = v45.CFrame.Position
+    local v154 = v152.Position - v153
+    local v155 = RaycastParams.new()
+    v155.FilterDescendantsInstances = {v46.Character}
+    v155.FilterType = Enum.RaycastFilterType.Blacklist
+    local v159 = workspace:Raycast(v153, v154, v155)
+    return v159 and v159.Instance and v159.Instance:IsDescendantOf(v151.Character)
+end
+local function v71()
+    local v160 = 0
+    local v162
+    local v161
+    while true do
+        if 2 == v160 then
+            return v161
+        end
+        if 1 == v160 then
+            local v435 = 0
+            while true do
+                if v435 == 1 then
+                    v160 = 2
+                    break
+                end
+                if v435 == 0 then
+                    local v163_1 = Vector2.new(v45.ViewportSize.X / 2, v45.ViewportSize.Y / 2)
+                    for v606, v607 in ipairs(v8:GetPlayers()) do
+                        if v607 ~= v46 and v69(v607) then
+                            if not (v51.Aimbot.TeamCheck and v607.Team == v46.Team) then
+                                local v677 = v607.Character:FindFirstChild(v51.Aimbot.TargetPart)
+                                if v677 then
+                                    local v707, v707_3
+                                    local v706_2
+                                    v706_2, v707_3 = v45:WorldToViewportPoint(v677.Position)
+                                    if v707_3 and v706_2.Z > 0 then
+                                        local v736 = (Vector2.new(v706_2.X, v706_2.Y) - v163_1).Magnitude
+                                        if v736 < v162 and v70(v607) then
+                                            v162 = v736
+                                            v161 = v607
+                                        end
+                                    end
+                                end
+                            end
+                        end
+                    end
+                    v435 = 1
+                end
+            end
+        end
+        if v160 == 0 then
+            v161 = nil
+            v162 = v51.Aimbot.FOV
+            v160 = 1
+        end
+    end
+end
+local function v72()
+    local v164 = 0
+    local v166
+    local v168, v168_4, v168_5
+    local v165
+    local v167
+    while true do
+        if v164 == 1 then
+            local v437 = 0
+            while true do
+                if v437 == 0 then
+                    v167 = nil
+                    v168_4 = nil
+                    v437 = 1
+                end
+                if 1 == v437 then
+                    v164 = 2
+                    break
+                end
+            end
+        end
+        if v164 == 0 then
+            v165 = 0
+            v166 = nil
+            v164 = 1
+        end
+        if v164 == 2 then
+            while true do
+                if v165 == 0 then
+                    local v573 = 0
+                    while true do
+                        if v573 == 1 then
+                            v165 = 1
+                            break
+                        end
+                        if 0 == v573 then
+                            v166 = v71()
+                            if not v166 then
+                                return
+                            end
+                            v573 = 1
+                        end
+                    end
+                end
+                if v165 == 3 then
+                    v45.CFrame = v45.CFrame:Lerp(nil, v51.Aimbot.Smoothness)
+                    break
+                end
+                if v165 == 1 then
+                    v167 = v166.Character and v166.Character:FindFirstChild(v51.Aimbot.TargetPart)
+                    if not v167 then
+                        return
+                    end
+                    v165 = 2
+                end
+                if v165 == 2 then
+                    local v169_6 = CFrame.new(v45.CFrame.Position, v167.Position)
+                    v165 = 3
+                end
+            end
+            break
+        end
+    end
+end
+local function v73()
+    if v68 then
+        return
+    end
+    v68 = v40.RenderStepped:Connect(function()
+        if not v51.Aimbot.Enabled then
+            return
+        end
+        if v51.Aimbot.IgnoreIfSilentAim and v51.enabled then
+            return
+        end
+        pcall(v72)
+    end)
+    print("✅ Aimbot ligado")
+end
+local function v74()
+    if v68 then
+        v68:Disconnect()
+        v68 = nil
+    end
+    print("🛑 Aimbot desligado")
+end
+print("✅ Aimbot System carregado!")
+local v75 = RaycastParams.new()
+v75.FilterType = Enum.RaycastFilterType.Exclude
+v75.IgnoreWater = true
+local v79 = {
+    Torso = {"Torso", "UpperTorso", "LowerTorso"},
+    ["Left Arm"] = {"Left Arm", "LeftUpperArm", "LeftLowerArm"},
+    ["Right Arm"] = {"Right Arm", "RightUpperArm", "RightLowerArm"},
+    ["Left Leg"] = {"Left Leg", "LeftUpperLeg", "LeftLowerLeg"},
+    ["Right Leg"] = {"Right Leg", "RightUpperLeg", "RightLowerLeg"},
+}
+local function v80(v170, v171)
+    if not v170 then
+        return nil
+    end
+    local v172 = v170:FindFirstChild(v171)
+    if v172 then
+        return v172
+    end
+    local v173 = v79[v171]
+    if v173 then
+        for v438, v439 in ipairs(v173) do
+            local v441 = v170:FindFirstChild(v439)
+            if v441 then
+                return v441
+            end
+        end
+    end
+    return v170:FindFirstChild("HumanoidRootPart") or v170:FindFirstChild("Head")
+end
+local function v81(v174)
+    if not v174 then
+        return nil
+    end
+    if v51.shieldbreaker then
+        local v410 = v174:FindFirstChild("RiotShieldPart")
+        if v410 and v410:IsA("BasePart") then
+            local v507 = v410:GetAttribute("Health")
+            if v507 and v507 > 0 then
+                return v410
+            end
+        end
+    end
+    local v175_7
+    if v51.randomparts then
+        local v412 = v51.partslist
+        v175_7 = v412 and #v412 > 0 and v412[v53:NextInteger(1, #v412)] or "Head"
+    else
+        v175_7 = v51.aimpart
+    end
+    return v80(v174, v175_7)
+end
+local function v82(v176)
+    local v177 = 0
+    local v178
+    while true do
+        if v177 == 0 then
+            if not v176 or not v176.Character then
+                return true
+            end
+            v178 = v176.Character:FindFirstChildOfClass("Humanoid")
+            v177 = 1
+        end
+        if v177 == 1 then
+            return not v178 or v178.Health <= 0
+        end
+    end
+end
+local function v83(v179)
+    if not v179 or not v179.Character then
+        return false
+    end
+    return v179.Character:FindFirstChildOfClass("ForceField") ~= nil
+end
+local function v84(v180)
+    local v181 = 0
+    local v182
+    while true do
+        if 0 == v181 then
+            if not v180 or not v180.Character then
+                return false
+            end
+            v182 = v180.Character:FindFirstChildOfClass("Humanoid")
+            v181 = 1
+        end
+        if v181 == 1 then
+            if not v182 then
+                return false
+            end
+            return v182.SeatPart ~= nil
+        end
+    end
+end
+local function v85(v183, v184, v185)
+    local v186 = 0
+    local v188
+    local v190
+    local v187
+    local v189
+    while true do
+        if v186 == 1 then
+            v188 = {v187}
+            if v185 then
+                table.insert(v188, v185)
+            end
+            v186 = 2
+        end
+        if v186 == 3 then
+            v190 = v43:Raycast(v183, v189, v75)
+            if not v190 then
+                return false
+            end
+            v186 = 4
+        end
+        if v186 == 4 then
+            local v191_8 = v190.Instance
+            return not (v191_8 and v191_8:IsDescendantOf(v185))
+        end
+        if v186 == 2 then
+            v75.FilterDescendantsInstances = v188
+            v189 = v184 - v183
+            v186 = 3
+        end
+        if 0 == v186 then
+            v187 = v46.Character
+            if not v187 then
+                return true
+            end
+            v186 = 1
+        end
+    end
+end
+local function v86(v192)
+    if not v192 or v192 == v46 or not v192.Character then
+        return false
+    end
+    if not v81(v192.Character) then
+        return false
+    end
+    if v51.deathcheck and v82(v192) then
+        return false
+    end
+    if v51.ffcheck and v83(v192) then
+        return false
+    end
+    if v51.vehiclecheck and v84(v192) then
+        return false
+    end
+    if v51.teamcheck and v192.Team == v46.Team then
+        return false
+    end
+    if v51.criminalsnoinnmates then
+        if v46.Team == v50 and v192.Team == v49 then
+            return false
+        end
+    end
+    if v51.inmatesnocriminals then
+        if v46.Team == v49 and v192.Team == v50 then
+            return false
+        end
+    end
+    return true
+end
+local function v87(v193)
+    if not v86(v193) then
+        return false
+    end
+    if v51.wallcheck then
+        local v414 = 0
+        local v416
+        while true do
+            if v414 == 1 then
+                local v417_10 = v81(v193.Character)
+                if v416 and v417_10 then
+                    if v85(v416.Position, v417_10.Position, v193.Character) then
+                        return false
+                    end
+                end
+                break
+            end
+            if v414 == 0 then
+                local v415_9 = v46.Character
+                v416 = v415_9 and v415_9:FindFirstChild("Head")
+                v414 = 1
+            end
+        end
+    end
+    return true
+end
+local function v88()
+    local v194 = 0
+    while true do
+        if v194 == 1 then
+            return v55
+        end
+        if 0 == v194 then
+            local v195_11 = os.clock()
+            if v195_11 - v54 > 0.15 then
+                local v635 = 0
+                local v636
+                while true do
+                    if v635 == 1 then
+                        if v636 >= 100 then
+                            v55 = true
+                        elseif v636 <= 0 then
+                            v55 = false
+                        else
+                            v55 = v53:NextInteger(1, 100) <= v636
+                        end
+                        break
+                    end
+                    if v635 == 0 then
+                        v54 = v195_11
+                        v636 = v51.hitchance
+                        v635 = 1
+                    end
+                end
+            end
+            v194 = 1
+        end
+    end
+end
+local function v89(v196)
+    local v197 = 0
+    local v199
+    local v201
+    local v200
+    local v198
+    while true do
+        if v197 == 0 then
+            v198 = v51.missspread
+            v199 = v53:NextNumber() * math.pi * 2
+            v197 = 1
+        end
+        if v197 == 2 then
+            return v196 + Vector3.new(math.cos(v199) * v200, v201, math.sin(v199) * v200)
+        end
+        if 1 == v197 then
+            v200 = v53:NextNumber() * v198
+            v201 = (v53:NextNumber() - 0.5) * v198
+            v197 = 2
+        end
+    end
+end
+local function v90(v202)
+    v202 = v202 or v51.fov
+    if not v45 then
+        return nil, nil
+    end
+    local v204 = v41:GetLastInputType()
+    local v205 = v204 == Enum.UserInputType.Touch or v41.MouseBehavior == Enum.MouseBehavior.LockCenter
+    local v206_12
+    if v205 then
+        local v419 = v45.ViewportSize
+        v206_12 = Vector2.new(v419.X / 2, v419.Y / 2)
+    else
+        v206_12 = v41:GetMouseLocation()
+    end
+    local v207 = os.clock()
+    if v51.targetstickiness and v57 and v207 - v58 < v51.targetstickinessduration then
+        if v87(v57) then
+            local v509 = v81(v57.Character)
+            if v509 then
+                local v647 = 0
+                local v649, v649_13, v649_14
+                local v648
+                while true do
+                    if v647 == 0 then
+                        v648 = 0
+                        v649_13 = nil
+                        v647 = 1
+                    end
+                    if v647 == 1 then
+                        while true do
+                            if 0 == v648 then
+                                local v650_15
+                                v649_14, v650_15 = v45:WorldToViewportPoint(v509.Position)
+                                break
+                            end
+                        end
+                        break
+                    end
+                end
+            end
+        end
+    end
+    local v208 = {}
+    for v388, v389 in ipairs(v8:GetPlayers()) do
+        if v86(v389) then
+            local v446 = v81(v389.Character)
+            if v446 then
+                local v543, v544 = v45:WorldToViewportPoint(v446.Position)
+                if v544 and v543.Z > 0 then
+                    local v608 = (Vector2.new(v543.X, v543.Y) - v206_12).Magnitude
+                    if v608 < v202 then
+                        v208[#v208 + 1] = {player = v389, dist = v608, part = v446}
+                    end
+                end
+            end
+        end
+    end
+    if v51.prioritizeclosest then
+        table.sort(v208, function(v447, v448)
+            return v447.dist < v448.dist
+        end)
+    end
+    for v390, v391 in ipairs(v208) do
+        if v87(v391.player) then
+            if v391.player ~= v57 then
+                v57 = v391.player
+                v58 = v207
+            end
+            return v391.player, v391.part.Position
+        end
+    end
+    v57 = nil
+    return nil, nil
+end
+local function v91(v209)
+    return function(...)
+        return v209(...)
+    end
+end
+local function v92()
+    local v210 = nil
+    pcall(function()
+        local v393 = filtergc("function", {Name = "castRay"}, true)
+        if v393 then
+            if type(v393) == "table" and #v393 > 0 then
+                v210 = v393[1]
+            elseif type(v393) == "function" then
+                v210 = v393
+            end
+        end
+    end)
+    if not v210 then
+        pcall(function()
+            for v510, v511 in pairs(getgc(true)) do
+                if type(v511) == "function" then
+                    local v577 = debug.getinfo(v511)
+                    if v577 and v577.name == "castRay" then
+                        v210 = v511
+                        break
+                    end
+                end
+            end
+        end)
+    end
+    if not v210 or type(v210) ~= "function" then
+        warn("❌ Não foi possível encontrar castRay")
+        return false
+    end
+    local v211 = pcall(function()
+        v59 = hookfunction(v210, v91(function(v421, v422, ...)
+            local v423 = 0
+            local v425, v425_16
+            local v424
+            while true do
+                if v423 == 0 then
+                    if not v51.enabled then
+                        return v59(v421, v422, ...)
+                    end
+                    v424, v425_16 = v90(v51.fov)
+                    v423 = 1
+                end
+                if v423 == 1 then
+                    if v424 and v424.Character then
+                        local v610 = v88()
+                        if v610 then
+                            local v688 = v81(v424.Character)
+                            if v688 then
+                                return v688, v688.Position
+                            end
+                        elseif v51.missspread > 0 then
+                            local v712 = v81(v424.Character)
+                            if v712 then
+                                local v738 = v89(v712.Position)
+                                return v59(v421, v738, ...)
+                            end
+                        end
+                    end
+                    return v59(v421, v422, ...)
+                end
+            end
+        end))
+    end)
+    if v211 then
+        print("✅ castRay hooked com sucesso!")
+        return true
+    else
+        warn("❌ Falha ao fazer hook de castRay")
+        return false
+    end
+end
+local v93 = v92()
+if not v93 then
+    v60 = false
+    task.spawn(function()
+        for v652 = 1, 10 do
+            task.wait(0.5)
+            if v92() then
+                v60 = true
+                print("✅ castRay hooked após tentativa " .. v652)
+                v36:Notify({
+                    Title = "✅ Silent Aim",
+                    Description = "Hook bem-sucedido!",
+                    Time = 3,
+                })
+                break
+            end
+        end
+        if not v60 then
+            warn("⚠️ Falha ao hook castRay após 10 tentativas")
+        end
+    end)
+else
+    v60 = true
+end
+local v94 = nil
+local v95 = nil
+pcall(function()
+    v94 = v42:FindFirstChild("GunRemotes")
+    if v94 then
+        v95 = v94:FindFirstChild("FuncReload")
+    end
+end)
+if v95 then
+    print("✅ FuncReload encontrado!")
+else
+    warn("⚠️ FuncReload não encontrado")
+end
+local function v96(v212)
+    if not v212 then
+        return
+    end
+    local v213 = v212:GetAttribute("OriginalFireRate")
+    if not v213 then
+        v213 = v212:GetAttribute("FireRate") or 0.12
+        v212:SetAttribute("OriginalFireRate", v213)
+    end
+    local v214 = v213 / v51.fireRateMultiplier
+    v212:SetAttribute("FireRate", v214)
+end
+local function v97(v215)
+    local v216 = 0
+    local v217
+    while true do
+        if 0 == v216 then
+            if not v215 or not v51.infiniteAmmo then
+                return
+            end
+            v217 = v215:GetAttribute("MaxAmmo") or 30
+            v216 = 1
+        end
+        if 2 == v216 then
+            if v64 then
+                v64.Text = "∞/" .. v217
+            end
+            break
+        end
+        if v216 == 1 then
+            v215:SetAttribute("Local_CurrentAmmo", v217)
+            v215:SetAttribute("CurrentAmmo", v217)
+            v216 = 2
+        end
+    end
+end
+local v98 = 0
+local function v99(v218)
+    if not v218 or not v51.autoReload then
+        return
+    end
+    local v219 = tick()
+    local v220 = v218:GetAttribute("MaxAmmo") or 30
+    local v221 = v218:GetAttribute("Local_CurrentAmmo") or v218:GetAttribute("CurrentAmmo") or 0
+    if v221 <= v51.autoReloadThreshold then
+        local v429 = 0
+        while true do
+            if v429 == 0 then
+                if v219 - v98 < 0.2 then
+                    return
+                end
+                v98 = v219
+                v429 = 1
+            end
+            if v429 == 1 then
+                if v95 then
+                    pcall(function()
+                        v95:InvokeServer()
+                    end)
+                    task.wait(0.1)
+                    if v51.infiniteAmmo then
+                        v218:SetAttribute("Local_CurrentAmmo", v220)
+                        v218:SetAttribute("CurrentAmmo", v220)
+                    end
+                else
+                    v218:SetAttribute("Local_CurrentAmmo", v220)
+                    v218:SetAttribute("CurrentAmmo", v220)
+                end
+                if not v64 then
+                    local v613 = v46:FindFirstChild("PlayerGui")
+                    if v613 then
+                        local v690 = v613:FindFirstChild("Home")
+                        if v690 then
+                            local v731 = v690:FindFirstChild("hud")
+                            if v731 then
+                                local v780 = v731:FindFirstChild("BottomRightFrame")
+                                if v780 then
+                                    local v798 = v780:FindFirstChild("GunFrame")
+                                    if v798 then
+                                        v64 = v798:FindFirstChild("BulletsLabel")
+                                    end
+                                end
+                            end
+                        end
+                    end
+                end
+                v429 = 2
+            end
+            if v429 == 2 then
+                if v64 then
+                    local v615 = v51.infiniteAmmo and "∞" or v220
+                    v64.Text = v615 .. "/" .. v220
+                end
+                break
+            end
+        end
+    end
+end
+local v100 = 0
+v40.Heartbeat:Connect(function()
+    local v222 = 0
+    local v224
+    local v223
+    while true do
+        if v222 == 0 then
+            local v451 = 0
+            while true do
+                if v451 == 1 then
+                    v222 = 1
+                    break
+                end
+                if 0 == v451 then
+                    v223 = tick()
+                    if v223 - v100 < 0.05 then
+                        return
+                    end
+                    v451 = 1
+                end
+            end
+        end
+        if v222 == 2 then
+            if not v224 then
+                return
+            end
+            pcall(function()
+                v96(v224)
+                v97(v224)
+                v99(v224)
+            end)
+            break
+        end
+        if v222 == 1 then
+            v100 = v223
+            v224 = v52
+            v222 = 2
+        end
+    end
+end)
+print("✅ Weapon Mods carregados!")
+local v101 = v42:WaitForChild("GunRemotes"):WaitForChild("ShootEvent")
+local function v102()
+    local v225 = 0
+    local v226
+    while true do
+        if v225 == 1 then
+            for v512, v513 in ipairs(v226:GetChildren()) do
+                if v513:IsA("Tool") and v513:GetAttribute("ToolType") == "Gun" then
+                    return v513
+                end
+            end
+            return nil
+        end
+        if v225 == 0 then
+            v226 = v46.Character
+            if not v226 then
+                return nil
+            end
+            v225 = 1
+        end
+    end
+end
+local function v103(v227, v228, v229)
+    local v230 = 0
+    local v232
+    local v231
+    while true do
+        if v230 == 0 then
+            v231 = (v228 - v227).Magnitude
+            v232 = Instance.new("Part")
+            v232.Name = "BulletTrail"
+            v232.Anchored = true
+            v230 = 1
+        end
+        if v230 == 2 then
+            v232.Size = Vector3.new(0.1, 0.1, v231)
+            v232.CFrame = CFrame.new(v227, v228) * CFrame.new(0, 0, -v231 / 2)
+            v232.Transparency = 0.5
+            if v229 then
+                v232.BrickColor = BrickColor.new("Cyan")
+                v232.Size = Vector3.new(0.2, 0.2, v231)
+            else
+                v232.BrickColor = BrickColor.Yellow()
+            end
+            v230 = 3
+        end
+        if v230 == 1 then
+            v232.CanCollide = false
+            v232.CanQuery = false
+            v232.CanTouch = false
+            v232.Material = Enum.Material.Neon
+            v230 = 2
+        end
+        if 3 == v230 then
+            v232.Parent = workspace
+            v44:AddItem(v232, v229 and 0.8 or 0.1)
+            break
+        end
+    end
+end
+local function v104()
+    local v233 = 0
+    local v235, v235_17
+    local v237
+    local v239
+    local v241, v241_20
+    local v243
+    local v245
+    local v247
+    local v249
+    local v236
+    local v244
+    local v234
+    local v246
+    local v242
+    while true do
+        if v233 == 2 then
+            local v240_19
+            v240_19, v241_20 = v90(v51.fov)
+            if not v240_19 or not v87(v240_19) then
+                v63 = nil
+                return
+            end
+            if v240_19 ~= v63 then
+                v62 = v234
+                v63 = v240_19
+            end
+            if v234 - v62 < v51.autoshootstartdelay then
+                return
+            end
+            v242 = v81(v240_19.Character)
+            v233 = 3
+        end
+        if v233 == 4 then
+            local v465 = 0
+            while true do
+                if v465 == 1 then
+                    v247 = {}
+                    for v616 = 1, v246 do
+                        local v617 = 0
+                        local v618
+                        while true do
+                            if v617 == 0 then
+                                local v618_22 = nil
+                                if v245 then
+                                    v618 = v242.Position
+                                elseif v51.missspread > 0 then
+                                    v618 = v89(v242.Position)
+                                else
+                                    return
+                                end
+                                v617 = 1
+                            end
+                            if v617 == 1 then
+                                v247[v616] = {v237.Position, v618, v245 and v242 or nil}
+                                v103(v239, v618, v244)
+                                break
+                            end
+                        end
+                    end
+                    v465 = 2
+                end
+                if v465 == 0 then
+                    v245 = v88()
+                    v246 = v52:GetAttribute("ProjectileCount") or 1
+                    v465 = 1
+                end
+                if v465 == 2 then
+                    v101:FireServer(v247)
+                    v233 = 5
+                    break
+                end
+            end
+        end
+        if v233 == 6 then
+            if v249 then
+                local v552 = v249:FindFirstChild("ShootSound")
+                if v552 then
+                    local v665 = 0
+                    local v666
+                    while true do
+                        if 1 == v665 then
+                            v666:Play()
+                            v44:AddItem(v666, 2)
+                            break
+                        end
+                        if v665 == 0 then
+                            local v708 = 0
+                            while true do
+                                if v708 == 0 then
+                                    v666 = v552:Clone()
+                                    v666.Parent = v249
+                                    v708 = 1
+                                end
+                                if 1 == v708 then
+                                    v665 = 1
+                                    break
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            break
+        end
+        if 5 == v233 then
+            local v248_21 = v243 - 1
+            v52:SetAttribute("Local_CurrentAmmo", v248_21)
+            if not v64 then
+                local v554 = v46:FindFirstChild("PlayerGui")
+                if v554 then
+                    local v667 = v554:FindFirstChild("Home")
+                    if v667 then
+                        local v693 = v667:FindFirstChild("hud")
+                        if v693 then
+                            local v732 = v693:FindFirstChild("BottomRightFrame")
+                            if v732 then
+                                local v740 = v732:FindFirstChild("GunFrame")
+                                if v740 then
+                                    v64 = v740:FindFirstChild("BulletsLabel")
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+            if v64 then
+                v64.Text = v248_21 .. "/" .. (v52:GetAttribute("MaxAmmo") or 30)
+            end
+            v249 = v52:FindFirstChild("Handle")
+            v233 = 6
+        end
+        if v233 == 3 then
+            if not v242 then
+                return
+            end
+            v243 = v52:GetAttribute("Local_CurrentAmmo") or v52:GetAttribute("CurrentAmmo") or 0
+            if v243 <= 0 then
+                return
+            end
+            v61 = v234
+            v244 = v52:GetAttribute("Projectile") == "Taser"
+            v233 = 4
+        end
+        if v233 == 1 then
+            if not v236 then
+                return
+            end
+            v237 = v236:FindFirstChild("Head")
+            if not v237 then
+                return
+            end
+            local v238_18 = v52:FindFirstChild("Muzzle")
+            v239 = v238_18 and v238_18.Position or v237.Position
+            v233 = 2
+        end
+        if v233 == 0 then
+            if not v51.autoshoot or not v51.enabled or not v52 then
+                return
+            end
+            v234 = os.clock()
+            if v234 - v61 < (v52:GetAttribute("FireRate") or v51.autoshootdelay) then
+                return
+            end
+            v236 = v46.Character
+            v233 = 1
+        end
+    end
+end
+local v105 = nil
+v40.Heartbeat:Connect(function()
+    local v251 = 0
+    while true do
+        if v251 == 1 then
+            v104()
+            break
+        end
+        if v251 == 0 then
+            v52 = v102()
+            if v52 ~= v105 then
+                v61 = 0
+                v105 = v52
+            end
+            v251 = 1
+        end
+    end
+end)
+local function v106(v252)
+    local v253 = 0
+    local v254
+    while true do
+        if v253 == 0 then
+            if not v252 or not v252.Team then
+                return Color3.fromRGB(255, 255, 255)
+            end
+            v254 = v252.Team
+            v253 = 1
+        end
+        if 1 == v253 then
+            if v254 == v48 then
+                return Color3.fromRGB(0, 150, 255)
+            elseif v254 == v49 then
+                return Color3.fromRGB(255, 150, 0)
+            elseif v254 == v50 then
+                return Color3.fromRGB(255, 0, 0)
+            end
+            return Color3.fromRGB(200, 200, 200)
+        end
+    end
+end
+local function v107(v255)
+    local v256 = 0
+    local v258
+    local v260
+    local v259
+    local v257
+    while true do
+        if v256 == 5 then
+            v260.Text = "0m"
+            v260.Size = v51.espTextSize - 1
+            v260.Font = 2
+            v260.Center = true
+            v256 = 6
+        end
+        if v256 == 3 then
+            v259.Text = "100%"
+            v259.Size = v51.espTextSize - 1
+            v259.Font = 2
+            v259.Center = true
+            v256 = 4
+        end
+        if v256 == 0 then
+            if not v67 or v255 == v46 or v65[v255] then
+                return
+            end
+            v257 = {
+                BoxLines = {},
+                NameText = nil,
+                HealthText = nil,
+                DistanceText = nil,
+            }
+            for v514 = 1, 4 do
+                local v515 = 0
+                local v516
+                while true do
+                    if v515 == 1 then
+                        v516.Transparency = 1
+                        v516.Visible = false
+                        v515 = 2
+                    end
+                    if v515 == 0 then
+                        v516 = Drawing.new("Line")
+                        v516.Thickness = v51.espBoxThickness
+                        v515 = 1
+                    end
+                    if 2 == v515 then
+                        table.insert(v257.BoxLines, v516)
+                        break
+                    end
+                end
+            end
+            v258 = Drawing.new("Text")
+            v256 = 1
+        end
+        if v256 == 6 then
+            v260.Outline = true
+            v260.Visible = false
+            v257.DistanceText = v260
+            v65[v255] = v257
+            break
+        end
+        if v256 == 1 then
+            v258.Text = v255.Name
+            v258.Size = v51.espTextSize
+            v258.Font = 2
+            v258.Center = true
+            v256 = 2
+        end
+        if v256 == 4 then
+            v259.Outline = true
+            v259.Visible = false
+            v257.HealthText = v259
+            v260 = Drawing.new("Text")
+            v256 = 5
+        end
+        if v256 == 2 then
+            v258.Outline = true
+            v258.Visible = false
+            v257.NameText = v258
+            v259 = Drawing.new("Text")
+            v256 = 3
+        end
+    end
+end
+local function v108(v261)
+    local v262 = v65[v261]
+    if not v262 then
+        return
+    end
+    for v395, v396 in ipairs(v262.BoxLines) do
+        v396:Remove()
+    end
+    if v262.NameText then
+        v262.NameText:Remove()
+    end
+    if v262.HealthText then
+        v262.HealthText:Remove()
+    end
+    if v262.DistanceText then
+        v262.DistanceText:Remove()
+    end
+    v65[v261] = nil
+end
+local function v109()
+    if not v67 or not v51.esp then
+        for v579, v580 in pairs(v65) do
+            local v581 = 0
+            while true do
+                if v581 == 0 then
+                    for v668, v669 in ipairs(v580.BoxLines) do
+                        v669.Visible = false
+                    end
+                    v580.NameText.Visible = false
+                    v581 = 1
+                end
+                if v581 == 1 then
+                    v580.HealthText.Visible = false
+                    v580.DistanceText.Visible = false
+                    break
+                end
+            end
+        end
+        return
+    end
+    local v264 = v46.Character
+    if not v264 then
+        return
+    end
+    local v265 = v264:FindFirstChild("HumanoidRootPart")
+    if not v265 then
+        return
+    end
+    for v397, v398 in pairs(v65) do
+        if v397 and v397.Parent and v397.Character then
+            if v397.Team ~= v46.Team then
+                local v556 = 0
+                local v558
+                local v560
+                local v559
+                local v557
+                while true do
+                    if v556 == 2 then
+                        if v558 and v559 and v560 and v560.Health > 0 then
+                            local v671 = (v558.Position - v265.Position).Magnitude
+                            if v671 <= v51.espMaxDistance then
+                                local v694 = 0
+                                local v696
+                                local v695
+                                local v697
+                                while true do
+                                    if v694 == 1 then
+                                        v697 = true
+                                        for v721, v722 in ipairs(v695) do
+                                            local v723, v724 = v45:WorldToViewportPoint(v722)
+                                            if not v724 or v723.Z <= 0 then
+                                                v697 = false
+                                                break
+                                            end
+                                            v696[v721] = Vector2.new(v723.X, v723.Y)
+                                        end
+                                        v694 = 2
+                                    end
+                                    if v694 == 2 then
+                                        if v697 then
+                                            local v733 = v106(v397)
+                                            if v51.espShowBox then
+                                                v398.BoxLines[1].From = v696[1]
+                                                v398.BoxLines[1].To = v696[2]
+                                                v398.BoxLines[1].Color = v733
+                                                v398.BoxLines[1].Visible = true
+                                                v398.BoxLines[2].From = v696[3]
+                                                v398.BoxLines[2].To = v696[4]
+                                                v398.BoxLines[2].Color = v733
+                                                v398.BoxLines[2].Visible = true
+                                                v398.BoxLines[3].From = v696[1]
+                                                v398.BoxLines[3].To = v696[3]
+                                                v398.BoxLines[3].Color = v733
+                                                v398.BoxLines[3].Visible = true
+                                                v398.BoxLines[4].From = v696[2]
+                                                v398.BoxLines[4].To = v696[4]
+                                                v398.BoxLines[4].Color = v733
+                                                v398.BoxLines[4].Visible = true
+                                            else
+                                                for v776, v777 in ipairs(v398.BoxLines) do
+                                                    v777.Visible = false
+                                                end
+                                            end
+                                            if v51.espShowName then
+                                                local v764 = v45:WorldToViewportPoint(v559.Position + Vector3.new(0, 1, 0))
+                                                v398.NameText.Position = Vector2.new(v764.X, v764.Y)
+                                                v398.NameText.Color = v733
+                                                v398.NameText.Visible = true
+                                            else
+                                                v398.NameText.Visible = false
+                                            end
+                                            if v51.espShowHealth then
+                                                local v769 = 0
+                                                local v771
+                                                local v770
+                                                while true do
+                                                    if v769 == 1 then
+                                                        v398.HealthText.Position = Vector2.new(v771.X, v771.Y)
+                                                        v398.HealthText.Text = v770 .. "%"
+                                                        v769 = 2
+                                                    end
+                                                    if v769 == 2 then
+                                                        if v770 > 75 then
+                                                            v398.HealthText.Color = Color3.fromRGB(0, 255, 0)
+                                                        elseif v770 > 50 then
+                                                            v398.HealthText.Color = Color3.fromRGB(255, 255, 0)
+                                                        elseif v770 > 25 then
+                                                            v398.HealthText.Color = Color3.fromRGB(255, 165, 0)
+                                                        else
+                                                            v398.HealthText.Color = Color3.fromRGB(255, 0, 0)
+                                                        end
+                                                        v398.HealthText.Visible = true
+                                                        break
+                                                    end
+                                                    if v769 == 0 then
+                                                        local v784 = 0
+                                                        while true do
+                                                            if v784 == 1 then
+                                                                v769 = 1
+                                                                break
+                                                            end
+                                                            if v784 == 0 then
+                                                                v770 = math.floor(v560.Health / v560.MaxHealth * 100)
+                                                                v771 = v45:WorldToViewportPoint(v559.Position + Vector3.new(0, 0.5, 0))
+                                                                v784 = 1
+                                                            end
+                                                        end
+                                                    end
+                                                end
+                                            else
+                                                v398.HealthText.Visible = false
+                                            end
+                                            if v51.espShowDistance then
+                                                local v773 = 0
+                                                while true do
+                                                    if v773 == 1 then
+                                                        v398.DistanceText.Text = math.floor(v671) .. "m"
+                                                        v398.DistanceText.Color = v733
+                                                        v773 = 2
+                                                    end
+                                                    if v773 == 2 then
+                                                        v398.DistanceText.Visible = true
+                                                        break
+                                                    end
+                                                    if 0 == v773 then
+                                                        local v774_23 = (v696[3] + v696[4]) / 2
+                                                        v398.DistanceText.Position = Vector2.new(v774_23.X, v774_23.Y + 5)
+                                                        v773 = 1
+                                                    end
+                                                end
+                                            else
+                                                v398.DistanceText.Visible = false
+                                            end
+                                        else
+                                            local v735 = 0
+                                            while true do
+                                                if v735 == 0 then
+                                                    for v793, v794 in ipairs(v398.BoxLines) do
+                                                        v794.Visible = false
+                                                    end
+                                                    v398.NameText.Visible = false
+                                                    v735 = 1
+                                                end
+                                                if v735 == 1 then
+                                                    v398.HealthText.Visible = false
+                                                    v398.DistanceText.Visible = false
+                                                    break
+                                                end
+                                            end
+                                        end
+                                        break
+                                    end
+                                    if 0 == v694 then
+                                        v695 = {
+                                            v558.Position + Vector3.new(-2, 3, 0),
+                                            v558.Position + Vector3.new(2, 3, 0),
+                                            v558.Position + Vector3.new(-2, -3, 0),
+                                            v558.Position + Vector3.new(2, -3, 0),
+                                        }
+                                        v696 = {}
+                                        v694 = 1
+                                    end
+                                end
+                            else
+                                local v698 = 0
+                                while true do
+                                    if v698 == 0 then
+                                        for v726, v727 in ipairs(v398.BoxLines) do
+                                            v727.Visible = false
+                                        end
+                                        v398.NameText.Visible = false
+                                        v698 = 1
+                                    end
+                                    if v698 == 1 then
+                                        v398.HealthText.Visible = false
+                                        v398.DistanceText.Visible = false
+                                        break
+                                    end
+                                end
+                            end
+                        else
+                            for v679, v680 in ipairs(v398.BoxLines) do
+                                v680.Visible = false
+                            end
+                            v398.NameText.Visible = false
+                            v398.HealthText.Visible = false
+                            v398.DistanceText.Visible = false
+                        end
+                        break
+                    end
+                    if v556 == 0 then
+                        v557 = v397.Character
+                        v558 = v557:FindFirstChild("HumanoidRootPart")
+                        v556 = 1
+                    end
+                    if v556 == 1 then
+                        v559 = v557:FindFirstChild("Head")
+                        v560 = v557:FindFirstChildOfClass("Humanoid")
+                        v556 = 2
+                    end
+                end
+            else
+                local v562 = 0
+                while true do
+                    if v562 == 1 then
+                        v398.HealthText.Visible = false
+                        v398.DistanceText.Visible = false
+                        break
+                    end
+                    if v562 == 0 then
+                        for v699, v700 in ipairs(v398.BoxLines) do
+                            v700.Visible = false
+                        end
+                        v398.NameText.Visible = false
+                        v562 = 1
+                    end
+                end
+            end
+        else
+            local v491 = 0
+            while true do
+                if 1 == v491 then
+                    v398.HealthText.Visible = false
+                    v398.DistanceText.Visible = false
+                    break
+                end
+                if v491 == 0 then
+                    for v623, v624 in ipairs(v398.BoxLines) do
+                        v624.Visible = false
+                    end
+                    v398.NameText.Visible = false
+                    v491 = 1
+                end
+            end
+        end
+    end
+end
+for v266, v267 in ipairs(v8:GetPlayers()) do
+    if v267 ~= v46 then
+        v107(v267)
+        v267.CharacterAdded:Connect(function()
+            task.wait(0.5)
+            v107(v267)
+        end)
+    end
+end
+v8.PlayerAdded:Connect(function(v268)
+    v268.CharacterAdded:Connect(function()
+        task.wait(0.5)
+        v107(v268)
+    end)
+end)
+v8.PlayerRemoving:Connect(function(v269)
+    v108(v269)
+end)
+local function v110()
+    if not v66 then
+        return
+    end
+    pcall(function()
+        local v399 = 0
+        local v401, v401_24, v401_25
+        local v403, v403_26
+        local v400
+        local v402
+        while true do
+            if v399 == 1 then
+                v402 = nil
+                v403 = nil
+                v399 = 2
+            end
+            if v399 == 2 then
+                while true do
+                    if v400 == 0 then
+                        v402 = v41:GetLastInputType() == Enum.UserInputType.Touch or v41.MouseBehavior == Enum.MouseBehavior.LockCenter
+                        v400 = 1
+                    end
+                    if v400 == 1 then
+                        v403_26 = nil
+                        if v402 then
+                            local v658 = v45.ViewportSize
+                            v403 = Vector2.new(v658.X / 2, v658.Y / 2)
+                        else
+                            v403 = v41:GetMouseLocation()
+                        end
+                        v400 = 2
+                    end
+                    if v400 == 2 then
+                        v66.Position = v403
+                        v66.Radius = v51.fov
+                        v400 = 3
+                    end
+                    if v400 == 3 then
+                        v66.Visible = v51.showfov and v51.enabled
+                        local v404_27 = v90()
+                        v400 = 4
+                    end
+                    if v400 == 4 then
+                        v66.Color = Color3.fromRGB(255, 255, 255)
+                        break
+                    end
+                end
+                break
+            end
+            if v399 == 0 then
+                v400 = 0
+                v401_25 = nil
+                v399 = 1
+            end
+        end
+    end)
+end
+v40.RenderStepped:Connect(function()
+    v109()
+    v110()
+end)
+local v111 = {
+    Enabled = false,
+    DiscreteMode = false,
+    AutoDetect = true,
+    DelayBetweenItems = 0.15,
+    ShowLogs = true,
+    ReturnToOriginal = true,
+}
+local v112 = {
+    MP5_Armory = CFrame.new(822, 98, 2217),
+    ["Remington 870_Armory"] = CFrame.new(822, 98, 2217),
+    Sniper_Armory = CFrame.new(830, 98, 2220),
+    Revolver_Armory = CFrame.new(830, 98, 2220),
+    M4A1_Armory = CFrame.new(838, 98, 2223),
+    Shield_Armory = CFrame.new(838, 98, 2223),
+    ["AK-47_Criminal"] = CFrame.new(-925, 92, 2042),
+    ["Remington 870_Criminal"] = CFrame.new(-925, 92, 2042),
+    Sniper_Criminal = CFrame.new(-918, 92, 2036),
+    Revolver_Criminal = CFrame.new(-918, 92, 2036),
+    FAL_Criminal = CFrame.new(-903, 92, 2047),
+}
+local v113 = {}
+local v114 = {}
+local v115 = false
+local v116 = nil
+local v117
+local v118
+pcall(function()
+    v117 = v42:WaitForChild("Remotes", 5):WaitForChild("InteractWithItem", 5)
+end)
+pcall(function()
+    v118 = v43:WaitForChild("Prison_ITEMS", 5):WaitForChild("giver", 5)
+end)
+local function v119(v270)
+    local v272 = 0
+    while true do
+        if v272 == 1 then
+            if v270:FindFirstChild("BodyVelocity") then
+                v270.BodyVelocity:Destroy()
+            end
+            break
+        end
+        if v272 == 0 then
+            v270.AssemblyLinearVelocity = Vector3.zero
+            v270.AssemblyAngularVelocity = Vector3.zero
+            v272 = 1
+        end
+    end
+end
+local function v120(v273)
+    if not v111.DiscreteMode then
+        return false
+    end
+    local v274 = v46.Character
+    if not v274 then
+        return false
+    end
+    local v275 = v274:FindFirstChild("HumanoidRootPart")
+    if not v275 then
+        return false
+    end
+    if not v116 then
+        v116 = v275.CFrame
+    end
+    local v276 = v112[v273]
+    if not v276 then
+        return false
+    end
+    v119(v275)
+    v275.CFrame = v276
+    task.wait(0.15)
+    return true
+end
+local function v121()
+    local v278 = 0
+    local v280
+    local v279
+    while true do
+        if v278 == 0 then
+            v279 = 0
+            v280 = nil
+            v278 = 1
+        end
+        if v278 == 1 then
+            local v281_28 = nil
+            while true do
+                if v279 == 3 then
+                    v281_28.CFrame = v116
+                    v116 = nil
+                    break
+                end
+                if 0 == v279 then
+                    if not v111.ReturnToOriginal or not v116 then
+                        return
+                    end
+                    v280 = v46.Character
+                    v279 = 1
+                end
+                if v279 == 2 then
+                    if not v281_28 then
+                        return
+                    end
+                    v119(v281_28)
+                    v279 = 3
+                end
+                if v279 == 1 then
+                    if not v280 then
+                        return
+                    end
+                    v281_28 = v280:FindFirstChild("HumanoidRootPart")
+                    v279 = 2
+                end
+            end
+            break
+        end
+    end
+end
+local function v122(v282)
+    local v283 = 0
+    local v285
+    local v284
+    while true do
+        if v283 == 2 then
+            if v285 then
+                for v590, v591 in ipairs(v285:GetChildren()) do
+                    if v591:IsA("Tool") and v591.Name == v282 then
+                        return true
+                    end
+                end
+            end
+            return false
+        end
+        if v283 == 1 then
+            for v517, v518 in ipairs(v284:GetChildren()) do
+                if v518:IsA("Tool") and v518.Name == v282 then
+                    return true
+                end
+            end
+            v285 = v46.Backpack
+            v283 = 2
+        end
+        if v283 == 0 then
+            local v493 = 0
+            while true do
+                if v493 == 0 then
+                    v284 = v46.Character
+                    if not v284 then
+                        return false
+                    end
+                    v493 = 1
+                end
+                if v493 == 1 then
+                    v283 = 1
+                    break
+                end
+            end
+        end
+    end
+end
+local function v123(v286)
+    local v288 = v286:GetPivot().Position
+    if v288.X > 700 then
+        return "Armory"
+    elseif v288.X < -800 then
+        return "Criminal"
+    else
+        return "Unknown"
+    end
+end
+local function v124()
+    v114 = {}
+    if not v118 then
+        warn("❌ Prison_ITEMS.giver não encontrado!")
+        return 0
+    end
+    local v289 = {}
+    for v405, v406 in ipairs(v118:GetChildren()) do
+        if v406:IsA("Model") or v406:IsA("Folder") then
+            local v495 = v406.Name
+            local v496 = nil
+            for v519, v520 in ipairs(v406:GetDescendants()) do
+                if v520.Name:match("Meshes/") or v520:IsA("MeshPart") or v520:IsA("Part") then
+                    v496 = v520
+                    break
+                end
+            end
+            if v496 then
+                local v563 = 0
+                local v565
+                local v564
+                while true do
+                    if 1 == v563 then
+                        v289[v495] = v289[v495] + 1
+                        v565 = v495 .. "_" .. v564
+                        v563 = 2
+                    end
+                    if 0 == v563 then
+                        v564 = v123(v406)
+                        if not v289[v495] then
+                            v289[v495] = 0
+                        end
+                        v563 = 1
+                    end
+                    if v563 == 2 then
+                        table.insert(v114, {
+                            name = v495,
+                            displayName = v495 .. (v564 ~= "Unknown" and " (" .. v564 .. ")" or ""),
+                            uniqueKey = v565,
+                            folder = v406,
+                            mesh = v496,
+                            area = v564,
+                        })
+                        v113[v565] = true
+                        break
+                    end
+                end
+            end
+        end
+    end
+    return #v114
+end
+local function v125(v290)
+    local v291 = 0
+    local v293
+    local v294
+    local v296
+    local v295
+    local v292
+    while true do
+        if v291 == 2 then
+            v294 = v290.mesh
+            if v111.DiscreteMode then
+                v120(v293)
+            end
+            v291 = 3
+        end
+        if 0 == v291 then
+            if not v111.Enabled then
+                return false
+            end
+            if not v117 then
+                return false
+            end
+            v291 = 1
+        end
+        if v291 == 3 then
+            v295 = 3
+            v296 = false
+            v291 = 4
+        end
+        if v291 == 1 then
+            v292 = v290.name
+            v293 = v290.uniqueKey
+            v291 = 2
+        end
+        if 4 == v291 then
+            for v521 = 1, v295 do
+                local v522, v523 = pcall(function()
+                    local v566 = {[1] = v294}
+                    return v117:InvokeServer(unpack(v566))
+                end)
+                if v522 then
+                    task.wait(0.1)
+                    if v122(v292) then
+                        v296 = true
+                        break
+                    end
+                end
+                if not v296 and v521 < v295 then
+                    task.wait(0.1)
+                end
+            end
+            return v296
+        end
+    end
+end
+function AF_StartFarm()
+    local v297 = 0
+    local v299
+    local v298
+    while true do
+        if 3 == v297 then
+            v115 = false
+            return v299
+        end
+        if v297 == 1 then
+            v116 = nil
+            v298 = tick()
+            v299 = {attempted = 0, collected = 0, skipped = 0, failed = 0}
+            v297 = 2
+        end
+        if v297 == 0 then
+            local v500 = 0
+            while true do
+                if v500 == 1 then
+                    v115 = true
+                    v297 = 1
+                    break
+                end
+                if v500 == 0 then
+                    if v115 then
+                        print("⚠️ Farm já está rodando!")
+                        return
+                    end
+                    if #v114 == 0 then
+                        v124()
+                        if #v114 == 0 then
+                            print("❌ Nenhuma arma encontrada!")
+                            return
+                        end
+                    end
+                    v500 = 1
+                end
+            end
+        end
+        if v297 == 2 then
+            for v524, v525 in ipairs(v114) do
+                if not v111.Enabled then
+                    break
+                end
+                local v526 = v525.uniqueKey
+                if v113[v526] then
+                    v299.attempted = v299.attempted + 1
+                    local v594 = v125(v525)
+                    if v594 then
+                        v299.collected = v299.collected + 1
+                    else
+                        v299.failed = v299.failed + 1
+                    end
+                    task.wait(v111.DelayBetweenItems)
+                else
+                    v299.skipped = v299.skipped + 1
+                end
+            end
+            if v111.DiscreteMode then
+                v121()
+            end
+            local v300_29 = math.floor((tick() - v298) * 1000) / 1000
+            v297 = 3
+        end
+    end
+end
+task.delay(2, function()
+    if v111.AutoDetect then
+        v124()
+    end
+end)
+local v126 = {
+    Combat = v39:AddTab("Combat", "crosshair"),
+    Weapon = v39:AddTab("Weapon Mods", "zap"),
+    ESP = v39:AddTab("ESP", "eye"),
+    Farm = v39:AddTab("Auto Farm", "box"),
+    Weapons = v39:AddTab("Weapon Selection", "list"),
+    Settings = v39:AddTab("Settings", "settings"),
+}
+v36:Notify({
+    Title = "Hybrid v7 Loaded!",
+    Description = "All features ready",
+    Time = 3,
+})
+print("✅ Interface carregada")
+local v127 = v126.Combat:AddLeftGroupbox("Silent Aim")
+v127:AddToggle("SilentAimEnabled", {
+    Text = "Enable Silent Aim",
+    Default = true,
+    Tooltip = "Ativar Silent Aim automático",
+    Callback = function(v301)
+        v51.enabled = v301
+        v36:Notify({
+            Title = "Silent Aim",
+            Description = v301 and "✅ Ativado" or "❌ Desativado",
+            Time = 2,
+        })
+    end,
+})
+v127:AddToggle("AutoShootEnabled", {
+    Text = "Enable AutoShoot",
+    Default = true,
+    Tooltip = "Atirar automaticamente",
+    Callback = function(v303)
+        v51.autoshoot = v303
+    end,
+})
+v127:AddDivider()
+v127:AddToggle("TeamCheck", {
+    Text = "Team Check",
+    Default = true,
+    Tooltip = "Não mirar em aliados",
+    Callback = function(v305)
+        v51.teamcheck = v305
+    end,
+})
+v127:AddToggle("WallCheck", {
+    Text = "Wall Check",
+    Default = true,
+    Tooltip = "Apenas alvos visíveis",
+    Callback = function(v307)
+        v51.wallcheck = v307
+    end,
+})
+v127:AddToggle("ShieldBreaker", {
+    Text = "Shield Breaker",
+    Default = true,
+    Tooltip = "Quebrar escudos automaticamente",
+    Callback = function(v309)
+        v51.shieldbreaker = v309
+    end,
+})
+v127:AddDivider()
+v127:AddSlider("HitChance", {
+    Text = "Hit Chance",
+    Default = 100,
+    Min = 0,
+    Max = 100,
+    Rounding = 0,
+    Suffix = "%",
+    Tooltip = "Chance de acerto (0-100%)",
+    Callback = function(v311)
+        v51.hitchance = v311
+    end,
+})
+local v128 = v126.Combat:AddRightGroupbox("FOV Settings")
+v128:AddSlider("FOVRadius", {
+    Text = "FOV Radius",
+    Default = 150,
+    Min = 30,
+    Max = 500,
+    Rounding = 0,
+    Suffix = "px",
+    Tooltip = "Raio do círculo FOV",
+    Callback = function(v313)
+        v51.fov = v313
+    end,
+})
+v128:AddToggle("ShowFOV", {
+    Text = "Show FOV Circle",
+    Default = true,
+    Tooltip = "Mostrar círculo FOV na tela",
+    Callback = function(v315)
+        v51.showfov = v315
+    end,
+})
+v128:AddDivider()
+v128:AddDropdown("TargetPart", {
+    Values = {"Head", "Torso", "Left Arm", "Right Arm"},
+    Default = "Head",
+    Multi = false,
+    Text = "Target Part",
+    Tooltip = "Parte do corpo para mirar",
+    Callback = function(v317)
+        v51.aimpart = v317
+    end,
+})
+v128:AddToggle("RandomParts", {
+    Text = "Random Parts",
+    Default = false,
+    Tooltip = "Mirar em partes aleatórias",
+    Callback = function(v319)
+        v51.randomparts = v319
+    end,
+})
+v128:AddDivider()
+v128:AddButton({
+    Text = "Check Silent Aim Status",
+    Func = function()
+        local v321 = 0
+        local v323
+        local v322
+        while true do
+            if v321 == 0 then
+                v322 = v60 and "✅ WORKING" or "❌ FAILED"
+                v323 = v60 and "Silent Aim is hooked and working!" or "Silent Aim failed. Using other features only."
+                v321 = 1
+            end
+            if v321 == 2 then
+                print("Hook Status:", v60 and "✅ Active" or "❌ Failed")
+                print("AutoShoot:", v60 and "✅ Functional" or "❌ Not working")
+                v321 = 3
+            end
+            if v321 == 1 then
+                v36:Notify({
+                    Title = "Silent Aim Status: " .. v322,
+                    Description = v323,
+                    Time = 4,
+                })
+                print("\n═══ SILENT AIM STATUS ═══")
+                v321 = 2
+            end
+            if 3 == v321 then
+                print("FOV Circle:", v51.showfov and "✅ Visible" or "⚪ Hidden")
+                print("═════════════════════════\n")
+                break
+            end
+        end
+    end,
+})
+v128:AddLabel("Team Behavior", true)
+v128:AddToggle("CriminalsNoInmates", {
+    Text = "Criminals Ignore Inmates",
+    Default = true,
+    Tooltip = "Criminosos não miram em prisioneiros",
+    Callback = function(v324)
+        v51.criminalsnoinnmates = v324
+    end,
+})
+v128:AddToggle("InmatesNoCriminals", {
+    Text = "Inmates Ignore Criminals",
+    Default = true,
+    Tooltip = "Prisioneiros não miram em criminosos",
+    Callback = function(v326)
+        v51.inmatesnocriminals = v326
+    end,
+})
+v128:AddDivider()
+v128:AddLabel("Aimbot (Camera)", true)
+v128:AddToggle("AimbotEnabled", {
+    Text = "Enable Aimbot",
+    Default = false,
+    Tooltip = "Move camera to target",
+    Callback = function(v328)
+        v51.Aimbot.Enabled = v328
+        if v328 then
+            if v51.enabled then
+                v36:Notify({
+                    Title = "⚠️ Warning",
+                    Description = "Aimbot won't work while Silent Aim is active",
+                    Time = 3,
+                })
+            end
+            v73()
+        else
+            v74()
+        end
+    end,
+})
+v128:AddSlider("AimbotFOV", {
+    Text = "Aimbot FOV",
+    Default = 100,
+    Min = 50,
+    Max = 300,
+    Rounding = 0,
+    Suffix = "px",
+    Tooltip = "Detection radius",
+    Callback = function(v330)
+        v51.Aimbot.FOV = v330
+    end,
+})
+v128:AddSlider("AimbotSmoothness", {
+    Text = "Smoothness",
+    Default = 0.5,
+    Min = 0.1,
+    Max = 1,
+    Rounding = 2,
+    Tooltip = "Camera movement speed (0.1=fast, 1=smooth)",
+    Callback = function(v332)
+        v51.Aimbot.Smoothness = v332
+    end,
+})
+v128:AddDropdown("AimbotTargetPart", {
+    Values = {"Head", "Torso", "HumanoidRootPart"},
+    Default = "Head",
+    Multi = false,
+    Text = "Aimbot Target Part",
+    Tooltip = "Body part to aim at",
+    Callback = function(v334)
+        v51.Aimbot.TargetPart = v334
+    end,
+})
+v128:AddToggle("AimbotTeamCheck", {
+    Text = "Aimbot Team Check",
+    Default = true,
+    Tooltip = "Don't target teammates",
+    Callback = function(v336)
+        v51.Aimbot.TeamCheck = v336
+    end,
+})
+v128:AddToggle("AimbotVisibleCheck", {
+    Text = "Aimbot Visible Check",
+    Default = true,
+    Tooltip = "Only target visible enemies",
+    Callback = function(v338)
+        v51.Aimbot.VisibleCheck = v338
+    end,
+})
+v128:AddLabel("⚠️ Auto-disabled if Silent Aim is ON", true)
+local v129 = v126.Weapon:AddLeftGroupbox("Fire Rate")
+v129:AddLabel("Fire Rate Multiplier", true)
+v129:AddLabel("Increase weapon fire rate", true)
+v129:AddSlider("FireRateMultiplier", {
+    Text = "Fire Rate",
+    Default = 1,
+    Min = 1,
+    Max = 10,
+    Rounding = 1,
+    Suffix = "x",
+    Tooltip = "1x = Normal | 10x = Very fast",
+    Callback = function(v340)
+        v51.fireRateMultiplier = v340
+        if v52 then
+            v96(v52)
+        end
+        v36:Notify({
+            Title = "Fire Rate",
+            Description = string.format("Speed: %.1fx", v340),
+            Time = 2,
+        })
+    end,
+})
+v129:AddDivider()
+v129:AddLabel("⚠️ Warning", true)
+v129:AddLabel("High fire rate (8x+) may be noticeable", true)
+v129:AddLabel("Use moderate values in public servers", true)
+local v130 = v126.Weapon:AddRightGroupbox("Ammunition")
+v130:AddToggle("InfiniteAmmo", {
+    Text = "Infinite Ammo",
+    Default = false,
+    Tooltip = "Never run out of ammo",
+    Callback = function(v342)
+        v51.infiniteAmmo = v342
+        v36:Notify({
+            Title = "Infinite Ammo",
+            Description = v342 and "✅ Enabled - Never runs out!" or "❌ Disabled",
+            Time = 3,
+        })
+    end,
+})
+v130:AddDivider()
+v130:AddToggle("AutoReload", {
+    Text = "Auto Reload",
+    Default = false,
+    Tooltip = "Automatically reload weapon",
+    Callback = function(v344)
+        v51.autoReload = v344
+        v36:Notify({
+            Title = "Auto Reload",
+            Description = v344 and "✅ Enabled - Fast reload!" or "❌ Disabled",
+            Time = 3,
+        })
+    end,
+})
+v130:AddSlider("ReloadThreshold", {
+    Text = "Reload Threshold",
+    Default = 5,
+    Min = 0,
+    Max = 10,
+    Rounding = 0,
+    Suffix = " bullets",
+    Tooltip = "Reload when ammo <= X",
+    Callback = function(v346)
+        v51.autoReloadThreshold = v346
+    end,
+})
+v130:AddDivider()
+v130:AddLabel("ℹ️ Auto Reload - FIXED!", true)
+v130:AddLabel("✅ Uses FuncReload (correct remote)", true)
+v130:AddLabel("✅ InvokeServer - legit method", true)
+v130:AddLabel("✅ Bullets deal damage normally", true)
+v130:AddLabel("💡 Compatible with Infinite Ammo!", true)
+local v131 = v126.Weapon:AddLeftGroupbox("Recommendations")
+v131:AddLabel("⚙️ BALANCED:", true)
+v131:AddLabel("• Fire Rate: 2x", true)
+v131:AddLabel("• Auto Reload: ON", true)
+v131:AddLabel("• Threshold: 5", true)
+v131:AddDivider()
+v131:AddLabel("⚡ AGGRESSIVE:", true)
+v131:AddLabel("• Fire Rate: 5x", true)
+v131:AddLabel("• Infinite Ammo: ON", true)
+v131:AddLabel("• Auto Reload: ON (backup)", true)
+v131:AddDivider()
+v131:AddLabel("🥷 STEALTH:", true)
+v131:AddLabel("• Fire Rate: 1.5x", true)
+v131:AddLabel("• Auto Reload: ON", true)
+v131:AddLabel("• Threshold: 10", true)
+local v132 = v126.ESP:AddLeftGroupbox("ESP Settings")
+v132:AddToggle("ESPEnabled", {
+    Text = "Enable ESP",
+    Default = true,
+    Tooltip = "Enable/Disable ESP",
+    Callback = function(v348)
+        v51.esp = v348
+    end,
+})
+v132:AddDivider()
+v132:AddToggle("ESPShowBox", {
+    Text = "Show Box",
+    Default = true,
+    Tooltip = "Show box around players",
+    Callback = function(v350)
+        v51.espShowBox = v350
+    end,
+})
+v132:AddToggle("ESPShowName", {
+    Text = "Show Name",
+    Default = true,
+    Tooltip = "Show player names",
+    Callback = function(v352)
+        v51.espShowName = v352
+    end,
+})
+v132:AddToggle("ESPShowHealth", {
+    Text = "Show Health",
+    Default = true,
+    Tooltip = "Show player health",
+    Callback = function(v354)
+        v51.espShowHealth = v354
+    end,
+})
+v132:AddToggle("ESPShowDistance", {
+    Text = "Show Distance",
+    Default = true,
+    Tooltip = "Show distance to players",
+    Callback = function(v356)
+        v51.espShowDistance = v356
+    end,
+})
+local v133 = v126.ESP:AddRightGroupbox("Customization")
+v133:AddSlider("ESPMaxDistance", {
+    Text = "Max Distance",
+    Default = 500,
+    Min = 100,
+    Max = 1000,
+    Rounding = 0,
+    Suffix = " studs",
+    Tooltip = "Maximum ESP distance",
+    Callback = function(v358)
+        v51.espMaxDistance = v358
+    end,
+})
+v133:AddSlider("ESPTextSize", {
+    Text = "Text Size",
+    Default = 13,
+    Min = 10,
+    Max = 18,
+    Rounding = 0,
+    Suffix = " px",
+    Tooltip = "ESP text size",
+    Callback = function(v360)
+        v51.espTextSize = v360
+        for v527, v528 in pairs(v65) do
+            local v529 = 0
+            while true do
+                if v529 == 0 then
+                    v528.NameText.Size = v360
+                    v528.HealthText.Size = v360 - 1
+                    v529 = 1
+                end
+                if 1 == v529 then
+                    v528.DistanceText.Size = v360 - 1
+                    break
+                end
+            end
+        end
+    end,
+})
+v133:AddSlider("ESPBoxThickness", {
+    Text = "Box Thickness",
+    Default = 2,
+    Min = 1,
+    Max = 5,
+    Rounding = 0,
+    Suffix = " px",
+    Tooltip = "ESP box line thickness",
+    Callback = function(v362)
+        v51.espBoxThickness = v362
+        for v530, v531 in pairs(v65) do
+            for v567, v568 in ipairs(v531.BoxLines) do
+                v568.Thickness = v362
+            end
+        end
+    end,
+})
+v133:AddDivider()
+v133:AddLabel("Team Colors", true)
+v133:AddLabel("🔵 Guards", true)
+v133:AddLabel("🟠 Inmates", true)
+v133:AddLabel("🔴 Criminals", true)
+local v134 = v126.Farm:AddLeftGroupbox("Auto Farm V3")
+v134:AddLabel("Remote-based farm system", true)
+v134:AddLabel("• Fast Mode: ~0.5s", true)
+v134:AddLabel("• Discrete Mode: ~2s", true)
+v134:AddDivider()
+v134:AddToggle("AutoFarmEnabled", {
+    Text = "Enable Auto Farm",
+    Default = false,
+    Tooltip = "Enable automatic weapon collection",
+    Callback = function(v364)
+        v111.Enabled = v364
+    end,
+})
+v134:AddToggle("DiscreteMode", {
+    Text = "Discrete Mode",
+    Default = false,
+    Tooltip = "Slower but less noticeable",
+    Callback = function(v366)
+        v111.DiscreteMode = v366
+    end,
+})
+v134:AddToggle("ReturnToOriginal", {
+    Text = "Return to Start",
+    Default = true,
+    Tooltip = "Return to original position after farm",
+    Callback = function(v368)
+        v111.ReturnToOriginal = v368
+    end,
+})
+v134:AddDivider()
+v134:AddSlider("FarmDelay", {
+    Text = "Delay Between Items",
+    Default = 0.15,
+    Min = 0.1,
+    Max = 0.5,
+    Rounding = 2,
+    Suffix = "s",
+    Tooltip = "Delay between each weapon",
+    Callback = function(v370)
+        v111.DelayBetweenItems = v370
+    end,
+})
+local v135 = v126.Farm:AddRightGroupbox("Actions")
+v135:AddButton({
+    Text = "⚡ START FARM",
+    Func = function()
+        if not v111.Enabled then
+            v36:Notify({
+                Title = "⚠️ Warning",
+                Description = "Enable Auto Farm first!",
+                Time = 2,
+            })
+            return
+        end
+        task.spawn(function()
+            local v408 = AF_StartFarm()
+            if v408 then
+                local v597 = v111.DiscreteMode and "Discrete 🕵️" or "Fast ⚡"
+                v36:Notify({
+                    Title = "✅ Farm Complete!",
+                    Description = string.format("%d/%d weapons | %s", v408.collected, v408.attempted, v597),
+                    Time = 4,
+                })
+            end
+        end)
+    end,
+})
+v135:AddButton({
+    Text = "🔍 Detect Weapons",
+    Func = function()
+        local v373 = v124()
+        v36:Notify({
+            Title = "🔍 Detection",
+            Description = string.format("%d weapons found", v373),
+            Time = 3,
+        })
+    end,
+})
+v135:AddDivider()
+v135:AddLabel("ℹ️ How It Works", true)
+v135:AddLabel("1. Enable Auto Farm", true)
+v135:AddLabel("2. Select weapons in Weapon Selection tab", true)
+v135:AddLabel("3. Click START FARM", true)
+v135:AddLabel("4. Script collects selected weapons", true)
+v135:AddDivider()
+v135:AddLabel("💡 Tips", true)
+v135:AddLabel("• Fast Mode: Quick collection", true)
+v135:AddLabel("• Discrete Mode: Teleports strategically", true)
+v135:AddLabel("• Return to Start: Goes back after", true)
+local v136 = v126.Weapons:AddLeftGroupbox("Weapon Selection")
+v136:AddLabel("Loading weapons...", true)
+v136:AddLabel("Click 'Detect Weapons' in Auto Farm tab", true)
+local v137 = v126.Weapons:AddRightGroupbox("Presets")
+v137:AddButton({
+    Text = "✅ Select All",
+    Func = function()
+        for v532, v533 in pairs(v113) do
+            v113[v532] = true
+        end
+        v36:Notify({
+            Title = "Weapon Selection",
+            Description = "All weapons selected",
+            Time = 2,
+        })
+    end,
+})
+v137:AddButton({
+    Text = "❌ Deselect All",
+    Func = function()
+        for v535, v536 in pairs(v113) do
+            v113[v535] = false
+        end
+        v36:Notify({
+            Title = "Weapon Selection",
+            Description = "All weapons deselected",
+            Time = 2,
+        })
+    end,
+})
+v137:AddDivider()
+v137:AddLabel("ℹ️ Info", true)
+v137:AddLabel("Weapons are detected automatically", true)
+v137:AddLabel("Select which ones to farm", true)
+task.spawn(function()
+    task.wait(3)
+    if #v114 > 0 then
+        local v570 = 0
+        local v572
+        local v571
+        while true do
+            if v570 == 1 then
+                v572 = {}
+                for v661, v662 in ipairs(v114) do
+                    if v662.area == "Armory" then
+                        table.insert(v571, v662)
+                    elseif v662.area == "Criminal" then
+                        table.insert(v572, v662)
+                    end
+                end
+                v570 = 2
+            end
+            if v570 == 3 then
+                v36:Notify({
+                    Title = "Weapons Detected!",
+                    Description = string.format("%d weapons loaded", #v114),
+                    Time = 3,
+                })
+                break
+            end
+            if v570 == 0 then
+                v136:AddDivider()
+                v571 = {}
+                v570 = 1
+            end
+            if v570 == 2 then
+                if #v571 > 0 then
+                    v136:AddLabel("🏛️ Armory Weapons", true)
+                    for v685, v686 in ipairs(v571) do
+                        v136:AddToggle(v686.uniqueKey, {
+                            Text = v686.name,
+                            Default = true,
+                            Callback = function(v703)
+                                v113[v686.uniqueKey] = v703
+                            end,
+                        })
+                    end
+                end
+                if #v572 > 0 then
+                    local v676 = 0
+                    while true do
+                        if 1 == v676 then
+                            for v713, v714 in ipairs(v572) do
+                                v136:AddToggle(v714.uniqueKey, {
+                                    Text = v714.name,
+                                    Default = true,
+                                    Callback = function(v718)
+                                        v113[v714.uniqueKey] = v718
+                                    end,
+                                })
+                            end
+                            break
+                        end
+                        if v676 == 0 then
+                            v136:AddDivider()
+                            v136:AddLabel("👿 Criminal Base Weapons", true)
+                            v676 = 1
+                        end
+                    end
+                end
+                v570 = 3
+            end
+        end
+    end
+end)
+local v138 = v126.Settings:AddLeftGroupbox("Menu")
+v138:AddToggle("ShowCustomCursor", {
+    Text = "Custom Cursor",
+    Default = true,
+    Callback = function(v377)
+        v36.ShowCustomCursor = v377
+    end,
+})
+v138:AddDropdown("NotificationSide", {
+    Values = {"Left", "Right"},
+    Default = "Right",
+    Multi = false,
+    Text = "Notification Side",
+    Callback = function(v379)
+        v36:SetNotifySide(v379)
+    end,
+})
+v138:AddDivider()
+v138:AddLabel("Menu bind"):AddKeyPicker("MenuKeybind", {Default = "RightShift", NoUI = true, Text = "Menu keybind"})
+v138:AddButton({
+    Text = "Unload Script",
+    Func = function()
+        local v380 = 0
+        while true do
+            if 1 == v380 then
+                if v66 then
+                    v66:Remove()
+                end
+                break
+            end
+            if v380 == 0 then
+                v36:Unload()
+                for v538, v539 in pairs(v65) do
+                    v108(v538)
+                end
+                v380 = 1
+            end
+        end
+    end,
+})
+v36.ToggleKeybind = Options.MenuKeybind
+local v141 = v126.Settings:AddRightGroupbox("Information")
+v141:AddLabel("Prison Life Hybrid v7", true)
+v141:AddLabel("Obsidian UI Edition", true)
+v141:AddDivider()
+v141:AddLabel("✅ Features:", true)
+v141:AddLabel("• Silent Aim + AutoShoot", true)
+v141:AddLabel("• Modern ESP System", true)
+v141:AddLabel("• Auto Farm V3 (Remotes)", true)
+v141:AddLabel("• Weapon Mods (Fire Rate, Ammo)", true)
+v141:AddLabel("• FOV Circle", true)
+v141:AddDivider()
+v141:AddLabel("⌨️ Shortcuts:", true)
+v141:AddLabel("RightShift: Toggle UI", true)
+v141:AddLabel("F9: Console (view logs)", true)
+v141:AddDivider()
+v141:AddLabel("📊 Status:", true)
+v141:AddLabel(v60 and "Silent Aim: ✅ Working" or "Silent Aim: ⚠️ Failed", true)
+v141:AddLabel(v95 and "Auto Reload: ✅ Ready" or "Auto Reload: ⚠️ Fallback", true)
+v141:AddLabel("ESP: ✅ Ready", true)
+v141:AddLabel("Auto Farm: ✅ Ready", true)
+v37:SetLibrary(v36)
+v38:SetLibrary(v36)
+v38:IgnoreThemeSettings()
+v38:SetIgnoreIndexes({"MenuKeybind"})
+v37:SetFolder("PrisonLifeHybrid")
+v38:SetFolder("PrisonLifeHybrid/v7")
+v38:BuildConfigSection(v126.Settings)
+v37:ApplyToTab(v126.Settings)
+v36:OnUnload(function()
+    local v382 = 0
+    while true do
+        if v382 == 1 then
+            if v66 then
+                v66:Remove()
+            end
+            v74()
+            break
+        end
+        if v382 == 0 then
+            print("Prison Life Hybrid v7 Unloaded!")
+            for v633, v634 in pairs(v65) do
+                v108(v633)
+            end
+            v382 = 1
+        end
+    end
+end)
+print("\n════════════════════════════════════════════════════════")
+print("✅✅✅ PRISON LIFE HYBRID v7 - OBSIDIAN UI ✅✅✅")
+print("════════════════════════════════════════════════════════")
+print("🎯 Silent Aim:", v60 and "✅ HOOKED" or "⚠️ FAILED (trying in background)")
+print("🔫 AutoShoot:", v60 and "✅ READY" or "⚠️ Depends on Silent Aim")
+print("🎯 Aimbot: ✅ READY")
+print("👁️ ESP Modern: ✅ READY")
+print("⚡ Auto Farm V3: ✅ READY")
+print("🔧 Weapon Mods:")
+print("   🔥 Fire Rate Multiplier: ✅ READY")
+print("   ♾️ Infinite Ammo: ✅ READY")
+print("   ⚡ Auto Reload:", v95 and "✅ READY (FuncReload)" or "⚠️ Fallback Mode")
+print("⭕ FOV Circle: ✅ READY")
+print("🎨 UI Obsidian: ✅ READY")
+print("⌨️ RightShift: Toggle UI")
+print("")
+if not v60 then
+    print("⚠️ WARNING: Silent Aim failed but trying in background")
+    print("✅ ALL other features work normally!")
+end
+if not v95 then
+    print("⚠️ WARNING: Auto Reload using fallback mode")
+    print("   💡 SOLUTION: Enable Infinite Ammo to never need reload!")
+end
+print("════════════════════════════════════════════════════════\n")
+v36:Notify({
+    Title = "✅ Hybrid v7 Loaded!",
+    Description = "All features ready - Obsidian UI",
+    Time = 5,
+})
+print("CHEGUEI NO FINAL")
